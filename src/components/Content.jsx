@@ -1,11 +1,77 @@
-import React from 'react'
-
+import React, { useContext,useState,useRef,useEffect } from 'react'
+import {data} from "../ContextA"
 const Content = () => {
+  const {arr,inputRef,text,settext,index,setindex,arr2,setarr2,colormap,setcorrect,setisrunning,isrunning,isfinished,setfinished}=useContext(data)
+  const handlekeydown=(e)=>{
+    if(isfinished)return;
+    if(!isrunning){
+      setisrunning(true);
+    }
+    if(e.key=="Backspace"){
+      e.preventDefault();
+      if(index==0)return;
+      setarr2(prev=>{
+        const copy=[...prev]
+        copy[index-1]="active"
+        return copy
+      })
+      setindex(prev=>prev-1)
+      settext("")
+    }
+
+  }
+  const handlechange = (e) => {
+  if (isfinished) return;
+
+  const value = e.target.value;
+  if (!value) return;
+
+  const char = value[value.length - 1];
+
+  setarr2(prev => {
+    const copy = [...prev];
+
+    if (index > 0) {
+      if (copy[index - 1] === "correctactive") {
+        copy[index - 1] = "correct";
+      } else if (copy[index - 1] === "incorrectactive") {
+        copy[index - 1] = "incorrect";
+      }
+    }
+
+    if (char === arr[index]) {
+      copy[index] = "correctactive";
+      setcorrect(prev => prev + 1);
+    } else {
+      copy[index] = "incorrectactive";
+    }
+
+    return copy;
+  });
+
+  setindex(prev => prev + 1);
+  settext("");
+};
+
+
   return (
-    <div className='w-full flex justify-center mt-30'>
-        <div className='w-[80vw] h-[15vh] overflow-y-auto text-4xl text-white/30 font-semibold text-justify text-container'>
-            <p>Life feels a lot like debugging code, bro—you think you know what’s wrong, you change one thing, and suddenly three new problems appear. But that’s kind of the beauty of it. Every mistake teaches you something, every failed attempt sharpens your thinking, and every small win pushes you forward. Growth doesn’t happen in clean straight lines; it’s messy, confusing, and sometimes frustrating. Still, if you keep showing up, learning from what breaks, and not quitting when things feel stuck, you slowly build something solid—whether it’s a skill, a career, or just confidence in yourself.</p>
+    <div className='relative w-full flex justify-center mt-30'>
+      <div className='<div className="absolute opacity-0 pointer-events-none">'>
+          <textarea onKeyDown={handlekeydown} onChange={(e)=>{handlechange(e)}} value={text} ref={inputRef} className='w-0 h-0 resize-none overflow-hidden' onBlur={() => inputRef.current.focus()}></textarea>
         </div>
+        <div className="w-[80vw] h-[24vh] overflow-y-auto text-container">
+          <p className="text-4xl font-semibold font-[Noto_Sans_Mono] font-extralight leading-[48px] whitespace-pre-line break-words">
+            {arr.map((char, idx) => (
+              <span
+                key={idx}
+                className={colormap[arr2[idx]] || "text-white/30"}
+              >
+                {char}
+              </span>
+            ))}
+          </p>
+        </div>
+        
 
     </div>
   )
