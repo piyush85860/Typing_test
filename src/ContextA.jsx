@@ -1,4 +1,5 @@
 import React, { createContext, useRef, useState } from 'react'
+import { BrowserRouter } from "react-router-dom";
 import App from './App'
 export const data=createContext()
 const ContextA = () => {
@@ -50,17 +51,24 @@ function randomInt(min, max) {
     const [text, settext] = useState("")
     const [index, setindex] = useState(0)
     const [arr2, setarr2] = useState(Array(arr.length).fill(""))
-    const time=60;
-    const [timeleft, settimeleft] = useState(time)
+    const [timeleft, settimeleft] = useState(60)
+    const [timecalcu, settimecalcu] = useState(60)
     const [isrunning, setisrunning] = useState(false)
     const [isfinished, setisfinished] = useState(0)
-    
-    const colormap={backactive:"border-l-2 border-violet-500 text-white/50",correctactive:"border-r-2 border-violet-500 text-green-300",correct:"text-green-300",incorrectactive:"border-r-2 border-violet-500 text-red-400",incorrect:"text-red-400"}
+    const [btnarr, setbtnarr] = useState(["active","notactive","notactive","active"])
+    const btnmap={active:"text-[#c87aff] font-bold",notactive:"text-white/50 hover:text-white"}
+    const timearr=[30,60,120,180,300]
+    const [numarr, setnumarr] = useState(["notactive","active","notactive","notactive","notactive"])
+    const nummap={active:"text-[#c87aff] font-bold",notactive:"text-white/50 hover:text-white"}
+    const [WPM, setWPM] = useState(0)
+    const [move, setmove] = useState(0)
+    const colormap={backactive:"border-l-2 border-[#c87aff] text-white/50",correctactive:"border-r-2 border-[#c87aff] text-green-300",correct:"text-green-300",incorrectactive:"border-r-2 border-[#c87aff] text-red-400",incorrect:"text-red-400"}
   return (
-        <data.Provider value={{arr,inputRef,text,settext,index,setindex,arr2,setarr2,colormap,correct,setcorrect,timeleft,settimeleft,isrunning,setisrunning,isfinished,setisfinished,words,punctuation,numbers,randomInt,setp}}>
-            <App/>
-        </data.Provider>
-    
+    <BrowserRouter>
+          <data.Provider value={{arr,inputRef,text,settext,index,setindex,arr2,setarr2,colormap,correct,setcorrect,timeleft,settimeleft,isrunning,setisrunning,isfinished,setisfinished,words,punctuation,numbers,randomInt,setp,btnarr,setbtnarr,btnmap,timearr,numarr,setnumarr,nummap,setWPM,WPM,settimecalcu,timecalcu,move,setmove}}>
+              <App/>
+          </data.Provider>
+    </BrowserRouter>
   )
 }
 
