@@ -57,7 +57,7 @@ function randomInt(min, max) {
     const [isfinished, setisfinished] = useState(0)
     const [btnarr, setbtnarr] = useState(["active","notactive","notactive","active"])
     const btnmap={active:"text-[#c87aff] font-bold",notactive:"text-white/50 hover:text-white"}
-    const timearr=[15,30,60,120,180,300]
+    const timearr=[30,60,120,180,300]
     const [numarr, setnumarr] = useState(["notactive","active","notactive","notactive","notactive"])
     const nummap={active:"text-[#c87aff] font-bold",notactive:"text-white/50 hover:text-white"}
     const [WPM, setWPM] = useState(0)
