@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 const Landing = () => {
+    const headRef=useRef(null);
     const navigate=useNavigate();
+
   return (
     <div className='relative w-full min-h-screen bg-white relative bg-gradient-to-r from-[#c2b3ff] from-60% to-[#f2e6ff] to-95%'>
         <div className='w-full h-screen absolute inset-0 mix-blend-color-burn'><img className='w-full h-full object-cover opacity-5' src="/img1.jpg" alt="" /></div>
@@ -14,10 +17,10 @@ const Landing = () => {
             <button className='px-5 text-white bg-[#c87aff] rounded-4xl font-[Inter] font-light text-lg'>Login</button>
         </nav>
         <div className='relative w-full h-screen flex justify-center items-center flex-col'>
-            <h1 className='absolute text-[20rem] font-[League_Gothic] bg-gradient-to-b from-black via-violet-900 to-[#c87aff]
+            <h1 ref={headRef} className='absolute z-1 text-[20rem] font-[League_Gothic] bg-gradient-to-b from-black via-violet-900 to-[#c87aff]
   bg-clip-text text-transparent translate-y-[-10px]  translate-x-[10px]'>TYPHONIC</h1>
-            <h1 className='text-[20rem] font-[League_Gothic] [-webkit-text-stroke:2px_rgb(0,0,0,0.6)] text-transparent'>TYPHONIC</h1>
-            <div className='w-full px-80 text-3xl font-light font-[Inter] flex justify-between translate-y-[-70px]'>
+            <h1 className=' heading2 text-[20rem] font-[League_Gothic] [-webkit-text-stroke:2px_rgb(0,0,0,0.6)] text-transparent'>TYPHONIC</h1>
+            <div className='absolute w-full px-80 text-3xl font-light font-[Inter] flex justify-between translate-y-[150px]'>
                 <p>Train your fingers.</p>
                 <p>Upgrade your speed.</p>
             </div>

@@ -19,6 +19,8 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.11.0",
     "remixicon": "^4.7.0",
+    "split-text": "^1.0.0",
+    "split-type": "^0.3.4",
     "tailwindcss": "^4.1.18",
     "three": "^0.182.0"
   },
