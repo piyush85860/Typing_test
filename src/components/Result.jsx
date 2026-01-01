@@ -27,7 +27,7 @@ const Result = () => {
       setisrunning(false);
       setisfinished(false);
       settimeleft(60);
-      navigate("/", { replace: true });}
+      navigate("/Section1", { replace: true });}
   return (
     <div className='w-full h-screen bg-gray-900 py-20'>
         <div className='w-full text-8xl text-[#c87aff] flex gap-2 justify-center mb-10 font-[Asimovian]'>
